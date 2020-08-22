@@ -6,11 +6,13 @@ import Product from '../product/Product';
 const Shop = () => {
     const first10 = fakeData.slice(0,10);
     const [products, setProducts] = useState(first10);
-
-    const handleCartProduct = (props) =>{
-        console.log('Clicked', props );
+    const [cart, setCart] = useState([]);
+  
+    const handleCartProduct = (product) =>{
+        const totalCartItem = [...cart, product];
+        setCart(totalCartItem);
     }
-    
+
     return (
         <div className="shop-container">
             <div className="product-container">
@@ -20,6 +22,7 @@ const Shop = () => {
             </div>
            <div className="cart-container">
                <h1>This is cart section</h1>
+                <h3>Order Summery : {cart.length} </h3>
            </div>
         </div>
     );
