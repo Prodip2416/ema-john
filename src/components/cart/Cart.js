@@ -1,10 +1,10 @@
 import React from 'react';
 import './Cart.css';
-import { Link } from 'react-router-dom';
+
 
 const Cart = (props) => {
     const cart = props.cart;
-    const totalPrice = cart.reduce((total, item) => total + item.price, 0);
+    const totalPrice = cart.reduce((total, item) => total + item.price * item.quantity, 0);
     let shipping = 0;
     if (totalPrice > 35) {
         shipping = 0
@@ -22,10 +22,9 @@ const Cart = (props) => {
             <p>Shipping : {convertToFixed(shipping)}</p>
             <h4>Total Item Price : {convertToFixed(totalPrice)}</h4>
             <h3 className="order-Total">Order Total : {convertToFixed(grandTotal)}</h3>
-            
-            <Link to="/review">
-                <button className="cart-btn" >Order Review</button>
-            </Link>
+           {
+               props.children
+           }
             
         </div>
     );
